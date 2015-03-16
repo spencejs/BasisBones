@@ -1,0 +1,817 @@
+/* ============================================================
+	Reset
+============================================================ */
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,figure,footer,header,nav,section,main{border:0;box-sizing:border-box;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}
+article,aside,figure,footer,header,nav,section,main{display:block}
+ul{list-style:outside;margin-left:1.3rem}
+ol{list-style:decimal outside;margin-left:1.3rem}
+nav ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+a{font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}
+ins{background-color:#ff9;color:#000;text-decoration:none}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+del{text-decoration:line-through}
+abbr[title],dfn[title]{border-bottom:1px dotted #000;cursor:help}
+table{border-collapse:collapse;border-spacing:0}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1rem 0;padding:0}
+input,select, textarea{vertical-align:middle;box-sizing:border-box;}
+img{max-width:100%;height:auto;}
+video{width:100%;height:auto; width:auto;}
+sub,sup{font-size:75%;line-height:0;position: relative;vertical-align: baseline}
+sup{top:-0.5rem}
+sub{bottom:-0.25rem}
+svg:not(:root){overflow: hidden}
+
+
+/* ============================================================
+	SASS Goodies
+============================================================ */
+
+$color-white:			#fff;
+$color-text:			#333;
+$color-text-light:		#999;
+$color-text-lighter:	#e9e9e9;
+$color-primary:			#F02B2B;
+$color-primary-hover:	lighten( $color-primary, 20% );
+$color-accent:			#0acccc;
+$color-accent-hover:	lighten( $color-accent, 20% );
+
+$margin-standard:		1.3rem;
+
+$border-basic:			1px solid $color-text-lighter;
+$border-thick:			2px solid $color-text-lighter;
+
+$font-primary:			Georgia, Times, serif;
+$font-secondary:		"HelveticaNeue", "Helvetica", "Arial", sans-serif;
+
+@mixin breakpoint($point) {
+	@if $point == egg {
+		@media (min-width: 20em) { @content; }
+		}
+	@if $point == embryo {
+		@media (min-width: 30em) { @content; }
+		}
+	@if $point == infant {
+		@media (min-width: 40em) { @content; }
+		}
+	@else if $point == baby {
+		@media (min-width: 50em) { @content; }
+		}
+	@else if $point == base {
+		@media (min-width: 65em) { @content; }
+		}
+	@else if $point == youngman {
+		@media (min-width: 85em) { @content; }
+		}
+	@else if $point == adult {
+		@media (min-width: 90em) { @content; }
+		}
+}
+
+
+/* ============================================================
+	BasisBones - Specific
+============================================================ */
+
+body{
+	margin: 3em auto;
+	max-width: 800px;
+	padding: 0 1.5rem;
+	}
+
+.site-header{
+	border-bottom: $border-basic;
+	margin-bottom: 3rem;
+	}
+
+.page-nav{
+	position: absolute;
+	right: 1.5rem;
+	top: 1.5rem;
+	}
+
+.current-page{
+	font-weight: bold;
+	}
+
+.primary-font{
+
+	&:after{
+		content: " #{$font-primary}.";
+		}
+	}
+
+.secondary-font{
+	font-family: $font-secondary;
+
+	&:after{
+		content: " #{$font-secondary}.";
+		}
+	}
+
+.swatches{
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -.5rem;
+	}
+
+.swatch-item{
+	border: $border-basic;
+	height: 5rem;
+	margin:0 .5rem 3rem;
+	position: relative;
+	width: 5rem;
+
+	&:after{
+		bottom: -2rem;
+		position: absolute;
+		}
+	}
+
+.swatch-white{
+	background-color: $color-white;
+
+	&:after{
+		content: "#{$color-white}";
+		}
+	}
+
+.swatch-text{
+	background-color: $color-text;
+
+	&:after{
+		content: "#{$color-text}";
+		}
+	}
+
+.swatch-primary{
+	background-color: $color-primary;
+
+	&:after{
+		content: "#{$color-primary}";
+		}
+	}
+
+.swatch-primary-hover{
+	background-color: $color-primary-hover;
+
+	&:after{
+		content: "#{$color-primary-hover}";
+		}
+	}
+
+.swatch-accent{
+	background-color: $color-accent;
+
+	&:after{
+		content: "#{$color-accent}";
+		}
+	}
+
+.swatch-accent-hover{
+	background-color: $color-accent-hover;
+
+	&:after{
+		content: "#{$color-accent-hover}";
+		}
+	}
+
+/* =============================================================
+/* =============================================================
+	Basic HTML
+================================================================
+============================================================  */
+
+
+/* ============================================================
+	Core Typography
+============================================================ */
+
+html{
+	color: $color-text;
+	font-family: $font-primary;
+	font-weight: 400;
+	line-height: 1.5;
+
+	@include breakpoint(infant) {
+		font-size: 105%;
+		line-height: 1.5;
+		}
+
+	@include breakpoint(baby) {
+		font-size: 110%;
+		line-height: 1.6;
+		}
+
+	@include breakpoint(base) {
+		font-size: 120%;
+		line-height: 1.6;
+		}
+	}
+
+p {margin-bottom: $margin-standard;}
+
+a{
+	color: $color-primary;
+	transition: color .5s;
+
+	&:hover{
+		color: $color-primary-hover;
+		}
+	}
+
+.callout {
+	font-size: 1.414rem;
+	}
+
+h1, h2, h3, h4, h5 {
+	font-family: $font-secondary;
+	font-weight: inherit;
+	line-height: 1.2;
+	margin: 1.414em 0 0.5em;
+
+	a{
+		text-decoration: none;
+		}
+	}
+
+h1 {
+	margin: 0;
+	font-size: 3.998rem;
+	}
+
+h2 {
+	font-size: 2.827rem;
+	}
+
+h3 {
+	font-size: 1.999rem;
+	}
+
+h4 {
+	font-size: 1.414rem;
+	}
+
+h5{
+	font-weight: bold;
+	}
+
+
+/* ============================================================
+	Special Formatting
+============================================================ */
+
+small {
+	font-size:.707rem;
+	margin: $margin-standard/2 0;
+	}
+
+time{
+	color: $color-text-light;
+	}
+
+blockquote{
+	border-left: 0.25em solid $color-text-lighter;
+	font-style: italic;
+	padding-left: $margin-standard;
+	}
+
+q {
+	quotes: "\201C" "\201D" "\2018" "\2019";
+	}
+
+q::before { content: open-quote; }
+q::after { content: close-quote; }
+
+code, samp {
+	color: #b03;
+	font-family: 'DejaVu Sans Mono',Inconsolata,Consolas,'Lucida Console',monospace;
+	}
+
+kbd {
+	color: #666;
+	font-family: inherit;
+	font-size: 87.5%;
+	line-height: 90%;
+	background-color: #f9f9f9;
+	margin: 0 0.25em;
+	border: $border-basic;
+	border-radius: 4px;
+	padding: 0.3334em 0.5em;
+	box-shadow: inset 0 1px 0 #fff;
+	}
+
+ins {
+	background-color: $color-text-lighter;
+	}
+
+
+/* ============================================================
+	Lists
+============================================================ */
+
+ul, ol{
+	margin-bottom: $margin-standard;
+
+	ul, ol{
+		margin-bottom: 0;
+		}
+	}
+
+dt {
+	font-weight: bold;
+	}
+
+dd {
+	margin-bottom: $margin-standard;
+	}
+
+
+/* ============================================================
+	Tabular data
+============================================================ */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	min-width: 100%;
+	}
+
+caption {
+	caption-side: bottom;
+	color: $color-text-light;
+	font-size: 0.75rem;
+	line-height: 1.333;
+	text-align: left;
+	margin: $margin-standard 0;
+	}
+
+thead {
+	border-bottom: $border-thick;
+	}
+
+td, th {
+	text-align: left;
+	border-bottom: $border-basic;
+	padding: $margin-standard/2 $margin-standard $margin-standard/2 0;
+	vertical-align: top;
+	}
+
+th {
+	font-weight: 700;
+	padding-bottom: 0.5em; /* 8px */
+	}
+
+
+/* ============================================================
+	Tabular data
+============================================================ */
+
+svg {
+	fill: currentColor;
+	}
+
+.icon {
+	height: 1.2rem;
+	margin-right: .2rem;
+	transform: scale(.833333);
+	vertical-align: -.1rem;
+	width: 1.2rem;
+
+	a &, button &{
+		transition: .3s;
+		}
+
+	a:hover &{
+		fill: $color-primary-hover;
+		transform: scale(1);
+		transition: .3s;
+		}
+
+	button:hover &{
+		transform: scale(1);
+		transition: .3s;
+		}
+	}
+
+/* ============================================================
+	Figures
+============================================================ */
+
+figure{
+	margin-bottom: $margin-standard;
+	}
+
+figcaption {
+	color: $color-text-light;
+	font-size: .85rem;
+	line-height: 1.3334;
+	padding: $margin-standard/2 0;
+	clear: left;
+	}
+
+
+/* =============================================================
+	Forms
+============================================================  */
+fieldset{
+	margin-bottom: $margin-standard;
+	}
+
+label, form small{
+	display: block;
+	}
+
+input, textarea, select, button{
+	border: 1px solid $color-text-light;
+	outline: none;
+	padding: $margin-standard/2;
+
+	&:focus, &:active{
+		border-color: $color-primary;
+		box-shadow: 2px 2px 0 $color-primary;
+		}
+	}
+
+button, input[type="submit"], input[type="button"]{
+	border: none;
+	background-color: $color-primary;
+	color: $color-white;
+	font-weight: bold;
+	vertical-align: baseline;
+	}
+
+
+/* =============================================================
+/* =============================================================
+	General Classes
+================================================================
+============================================================  */
+
+
+/* ============================================================
+	Micro Clearfix
+============================================================ */
+
+.clearfix:before,
+.clearfix:after {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+/* ============================================================
+	Wordpress Classes
+============================================================ */
+.aligncenter { display:block; margin:0 auto }
+.alignleft { float:left; margin: 0 $margin-standard $margin-standard 0;}
+.alignright { float:right; margin:0 0 $margin-standard $margin-standard;}
+.wp-caption { padding:$margin-standard; margin:$margin-standard }
+
+
+/* =============================================================
+	Hide only visually, but have it available for screenreaders: h5bp.com/v
+============================================================  */
+
+.visuallyhidden, .screen-reader-text{
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+	}
+
+
+/* =============================================================
+/* =============================================================
+	Posts
+================================================================
+============================================================  */
+
+
+/* =============================================================
+	Post List
+============================================================  */
+
+.post-list-item{
+	border-bottom: $border-basic;
+	margin-bottom: $margin-standard;
+	clear: both;
+
+	h1{
+		font-size: 1.999rem;
+		}
+
+	img{
+		float: left;
+		margin-right: $margin-standard;
+		width: 20%;
+		}
+	}
+
+
+/* =============================================================
+	Comments List
+============================================================  */
+
+.comments-list, .comment .children{
+	list-style: none;
+	margin-left: 0;
+	}
+
+.comment{
+	border-bottom: $border-basic;
+	margin-bottom: $margin-standard;
+
+	.children{
+		border-left: $border-basic;
+		margin-left: $margin-standard/2;
+		padding-left: $margin-standard*1.5;
+		}
+	}
+
+.gravatar{
+	float: left;
+	margin-right: $margin-standard;
+	width: 10%;
+	}
+
+.comment-title{
+	@extend h4;
+	display: block;
+	}
+
+.comment-date{
+	display: block;
+	}
+
+.comment-body{
+	clear: left;
+	}
+
+.children .comment:last-of-type{
+	border-bottom: none;
+	}
+
+
+/* =============================================================
+	Post Navigation
+============================================================  */
+
+.post-nav{
+	display: flex;
+	justify-content: space-between;
+
+	a{
+		display: inline-block;
+		}
+	}
+
+.newer-posts{
+	margin-left: auto;
+	text-align: right;
+	}
+
+
+/* =============================================================
+/* =============================================================
+	Navigation Patterns
+================================================================
+============================================================  */
+
+
+/* =============================================================
+	Main Nav
+============================================================  */
+
+.nav ul{
+	list-style: none;
+	margin-left: 0;
+
+	li{
+		display: inline-block;
+		}
+	}
+
+
+/* =============================================================
+	Social Nav
+============================================================  */
+
+.icon-nav-list{
+	list-style: none;
+	margin-left: 0;
+
+	li{
+		display: inline-block;
+		}
+
+	.icon{
+		height: 1.7rem;
+		width: 1.7rem;
+		}
+	}
+
+
+/* =============================================================
+	Progress Nav
+============================================================  */
+
+.progress-nav-list{
+	list-style: none;
+	margin-left: 0;
+
+	li{
+		background-color: $color-text-lighter;
+		display: inline-block;
+		line-height: 3rem;
+		margin-left: 1.5rem;
+		padding: 0 $margin-standard;
+		position: relative;
+
+		&:before {
+			content: "";
+			border: solid;
+			border-color: $color-text-lighter transparent;
+			border-width: 1.5rem 0 1.5rem 1.25rem;
+			display: block;
+			position: absolute;
+			top: 0;
+			left: -1.25rem;
+			}
+
+		&:after {
+			content: "";
+			border: solid;
+			border-color: transparent $color-text-lighter;
+			border-width: 1.5rem 0 1.5rem 1.25rem;
+			display: block;
+			position: absolute;
+			right: -1.25rem;
+			top: 0;
+			}
+		}
+
+		.is-active{
+			background-color: $color-primary;
+			color: $color-white;
+
+			&:before{
+				border-color: $color-primary transparent;
+				}
+
+			&:after{
+				border-color: transparent $color-primary;
+				}
+			}
+	}
+
+
+/* =============================================================
+	Breadcrumb Nav
+============================================================  */
+
+.breadcrumb-nav-list{
+	list-style: none;
+	margin-left: 0;
+
+	li{
+		display: inline-block;
+		margin-right: $margin-standard/2;
+
+		&:after{
+			content: '>';
+			color: $color-text-light;
+			margin-left: $margin-standard/2;
+			}
+
+		&:last-child:after{
+			content: '';
+			}
+		}
+	}
+
+
+/* =============================================================
+	Tabbed Nav
+============================================================  */
+
+.tabbed-nav-list{
+	border-bottom: $border-basic;
+	display: flex;
+	list-style: none;
+	margin-left: 0;
+
+	a{
+		display: block;
+		padding: $margin-standard/2 $margin-standard;
+		}
+
+	li{
+		margin-bottom: -1px;
+		border: $border-basic;
+		border-radius: 0.25em 0.25em 0 0;
+		border-width: 1px 1px 1px 0;
+
+		&:first-of-type{
+			border-left-width: 1px;
+			}
+
+		&.is-active{
+			border-bottom-color: $color-white;
+			}
+		}
+	}
+
+
+/* =============================================================
+/* =============================================================
+	Other Patterns
+================================================================
+============================================================  */
+
+
+/* =============================================================
+	Module Boxes
+============================================================  */
+
+.modules{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	}
+
+
+.module-box{
+	flex: 0 0 45%;
+	margin: 0 0 $margin-standard;
+	}
+
+
+/* =============================================================
+	Full Screen Section
+============================================================  */
+
+.full-screen{
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+	}
+
+
+/* =============================================================
+	People Listing
+============================================================  */
+
+.people-list{
+	display: flex;
+	flex-wrap: wrap;
+
+	@include breakpoint(embryo) {
+		margin: 0 -2.5%;
+		}
+
+	@include breakpoint(base) {
+		margin: 0 -2.5%;
+		}
+	}
+
+
+.people-list-item{
+
+	@include breakpoint(embryo) {
+		max-width: 45%;
+		margin: 0 2.5% $margin-standard;
+		}
+
+	@include breakpoint(base) {
+		max-width: 28.33333%;
+		margin: 0 2.5% $margin-standard;
+		}
+	}
